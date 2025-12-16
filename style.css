@@ -1,14 +1,11 @@
-.title-input {
-    display: block;
-    box-sizing: border-box;
-    margin-bottom: 20px;
-    width: 300px;
+body {
+    font-family: "Roboto", sans-serif;
 }
 
-.new-post-btn {
-    width: 300px;
-    height: 30px;
-    box-sizing: border-box;
+h2 {
+    font-size: 30px;
+    font-weight: 600;
+    color:peru ;
 }
 
 .blog {
@@ -20,4 +17,60 @@
 
 .column {
     width: 50%;
+}
+
+.post {
+    margin-bottom: 50px;
+}
+
+.post-title-input {
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    width: 300px;
+    font-size: 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.post-text-input {
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    width: 300px;
+    height: 80px;
+    font-size: 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.new-post-btn {
+    width: 300px;
+    height: 40px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: peru;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.new-post-btn:hover {
+    background-color: rgb(255, 130, 5);
+}
+
+.post__date {
+    margin-bottom: 0px;
+    font-weight: 600;
+    color: peru;
+}
+
+.post__title {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    font-size: 22px;
+    font-weight: 600px;
+    letter-spacing: 1px;
 }
