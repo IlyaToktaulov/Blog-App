@@ -2,7 +2,12 @@ const postTitleInputNode = document.querySelector('.js-post-title-input');
 const postTextInputNode = document.querySelector('.js-post-text-input');
 const newPostBtnNode = document.querySelector('.js-new-post-btn');
 const postsNode = document.querySelector('.js-posts');
+const validationMessage = document.querySelector('.js-validationMessage');
+
 const posts = [];
+const TEXT_VALIDATION_LIMIT = 20;
+const TITLE_VALIDATION_LIMIT = 10;
+
 
 newPostBtnNode.addEventListener('click', function () {
     // получить данные из поля ввода
@@ -15,6 +20,35 @@ newPostBtnNode.addEventListener('click', function () {
     renderPosts();
 });
 
+postTitleInputNode.addEventListener('input', function() {
+    validation();
+});
+
+postTextInputNode.addEventListener('input', function() {
+    validation();
+});
+
+function validation() {
+    const titleLen = postTitleInputNode.value.length;
+    const textLen = postTextInputNode.value.length;
+
+    if (titleLen > TITLE_VALIDATION_LIMIT) {
+        validationMessage.innerText = `Длинна заголовка не должна превышать ${TITLE_VALIDATION_LIMIT} символов`;   
+        validationMessage.classList.remove("validationMessage__hidden");
+        document.querySelector('.js-new-post-btn').disabled = true;
+        return;
+    }
+
+    if (textLen > TEXT_VALIDATION_LIMIT) {
+        validationMessage.innerText = `Длинна описания не должна превышать ${TEXT_VALIDATION_LIMIT} символов`;
+        validationMessage.classList.remove("validationMessage__hidden");
+        document.querySelector('.js-new-post-btn').disabled = true;
+        return;
+    }
+
+    validationMessage.classList.add("validationMessage__hidden");
+    document.querySelector('.js-new-post-btn').disabled = false;      // это выполнится если ни одно из условий выше не были выполнены
+}
 
 function getPostFromUser() {
     const title = postTitleInputNode.value;
@@ -42,7 +76,7 @@ function getPost() {
 
 function postsDate() {
     let postDate = new Date();
-    let dd = postDate.getDate();
+    let dd = postDate.getDate();                
     let mm = postDate.getMonth();
     let yy = postDate.getFullYear();
     let hh = postDate.getHours();
