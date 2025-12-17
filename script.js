@@ -53,37 +53,29 @@ function validation() {
 function getPostFromUser() {
     const title = postTitleInputNode.value;
     const text = postTextInputNode.value;
-    const postDate = postsDate();
 
     return {
         title: title,
         text: text,
-        date: postDate,
     }
 }
 
 function addPost({title, text, date}) {
+    const currentDate = new Date();
+    const formattedDate = `
+        ${currentDate.getHours()}:${String(currentDate.getMinutes()).padStart(2, '0')} 
+        ${String(currentDate.getDay()).padStart(2, '0')}.${String(currentDate.getMonth()+1).padStart(2, '0')}.${currentDate.getFullYear()}
+    `
+
     posts.push({
         title: title,
         text: text,
-        date: date,
+        date: formattedDate,
     });
 }
 
 function getPost() {
     return posts;
-}
-
-function postsDate() {
-    let postDate = new Date();
-    let dd = postDate.getDate();                
-    let mm = postDate.getMonth();
-    let yy = postDate.getFullYear();
-    let hh = postDate.getHours();
-    let min = postDate.getMinutes();
-
-    postDate = `${dd}.${mm}.${yy} ${hh}:${min}`;
-    return postDate;
 }
 
 function renderPosts(params) {
